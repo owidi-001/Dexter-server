@@ -26,7 +26,7 @@ SECRET_KEY = "django-insecure-&ap7%e3-jti!$f01w_*r-zc_9$=ll**kx4cjo8bq5-(ag94x%4
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True # Now in production
 
-ALLOWED_HOSTS = ["https://web-production-f123.up.railway.app/"]
+ALLOWED_HOSTS = ["web-production-f123.up.railway.app/"]
 
 
 # Application definition
@@ -68,7 +68,7 @@ MIDDLEWARE = [
     "whitenoise.middleware.WhiteNoiseMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.common.CommonMiddleware",
-    # "django.middleware.csrf.CsrfViewMiddleware",
+    "django.middleware.csrf.CsrfViewMiddleware",
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
