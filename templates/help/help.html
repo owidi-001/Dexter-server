@@ -1,0 +1,347 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+<div class="container">
+
+    <div class="block">
+
+        <!-- Overview -->
+        <div class="sub-block">
+            <h2>Overview</h2>
+            <p>
+                1. Overview: Provide a brief description of the application and its purpose.
+            </p>
+            <h4>
+                Audience
+            </h4>
+            <p>
+                The taget audience for this application is the product owner who is the Shop owner (Dexter Collection)
+                and the shop owner staff.
+            </p>
+            <p>
+                The user experience or knowledge in technology is assumed to be a beginner, therefore everything about
+                the app is simplefied for use.
+                The application uses plain English language for easier understanding by the target audience.
+            </p>
+        </div>
+
+        <div class="sub-block">
+            <h4>
+                Goals
+            </h4>
+            <p>
+                The primary goal for this application is to help easen the inventory tracking for the product owner.
+                Through the app, the product owner will be able to create, retrieve, update and delete the various
+                records and transactions recorded within the application.
+            </p>
+        </div>
+        <div class="sub-block">
+            <h4>Features Availed</h4>
+            <p>
+                This is a single application with aseparate web based superuser dashboard for management purposes. It is
+                advised that the admin dashboard be operated by a trained or experienced personel as it enables rights
+                that when misused will compromise the intergrity and accountability of the system data and database.
+            </p>
+            <p>
+                <b>N/B</b> All the features meant for the target audience is Availed in the mobile application.
+            </p>
+        </div>
+
+        <div class="sub-block">
+            <h4>
+                User Interface
+            </h4>
+            <p>
+                The user interface is intuitive and easy to use.
+            </p>
+            <p>
+                The navigation systems is a root-branch based ie tracable back and forth for the major applications use
+                case.
+            </p>
+            <p>
+                Icons have been user to enhance user actions requirements.
+            </p>
+        </div>
+        <div class="sub-block">
+            <h4>
+                Platforms
+            </h4>
+            <p>
+                The application is mobile based ie, can work on android based mobile devices.
+            </p>
+            <p>It is however important to note that it was built using a crossplatform technology and thus can be
+                compiled to work on ios devices as well.</p>
+        </div>
+
+        <div class="sub-block">
+            <h4>Security</h4>
+            <p>
+                The app is secure, only allows for authenticated users only to operate the application.
+            </p>
+            <p>
+                Any unauthorised personel using the application is subject to impromptu removal/deletion.
+            </p>
+            <p>The privacy of the users is assured as no private information is collected by the application</p>
+            <p>Users are recommended to use strong passwords and not a re-used one in different application</p>
+        </div>
+        <div>
+            <h4>
+                Pricing
+            </h4>
+            <p>
+                The costs associated with the application involves:
+            </p>
+            <ul>
+                <li>Server hosting</li>
+                <li>Playstore hosting</li>
+                <li>Development costs</li>
+                <li>Maintainance costs: if any</li>
+                <li>Future feature additions: if any</li>
+            </ul>
+            <p>The above costs are confidential and only known to the product owner and the developer.</p>
+        </div>
+        <div>
+            <h4>
+                Support
+            </h4>
+            <p>
+                This webpage acts as the primary documentation of the mobile application. It avails other means of
+                aquiring help/support such as FAQs and contact information for help personel.
+            </p>
+        </div>
+    </div>
+
+    <div class="block">
+
+        <!-- Features -->
+        <h2>Features</h2>
+        <p>
+            2. Features: Explain the features of the application, and how they can be used to benefit the user.
+        </p>
+
+        <div class="sub-block">
+            <h4>
+                Home Page
+            </h4>
+            <p>
+                The homepage/Shop provides the landing screen for the authenticated user. The following summarizes the
+                features.
+            </p>
+            <img src="{% static 'imgs/documentation/home-screen.jpg'%}" alt="Home page">
+            <p>
+                The colors points to:
+            </p>
+            <ul>
+                <li>
+                    <b>Red arrow</b> <br>
+                    <p>The product search/filter</p>
+                    <p>It allows for the user to browse product by their names</p>
+
+                </li>
+                <li>
+                    <b>Green skew enclosure</b> <br>
+                    <p>Categorical filters</p>
+                    <p>It allows the user to easily filter products by the category names displayed</p>
+                </li>
+                <li>
+                    <b>Blue arch</b> <br>
+                    <p>The navigation buttons</p>
+                    <p>allows the user to switch between different actions such as product search, cart and profile
+                        respectively</p>
+                </li>
+                <li>
+                    <b>N/B</b> <br>
+                    <p>
+                        In between the Categorical filters and the bottom navigation is a scrollable grid of product
+                        cards.
+                        Tapping on the card opens to the product details where actions such as add to card can be
+                        achieved
+                    </p>
+                </li>
+
+            </ul>
+        </div>
+        <div class="sub-block">
+            <h4>Cart Page</h4>
+            <p>The cart page has the following features</p>
+            <img src="{% static 'imgs/documentation/cart-page.jpg'%}" alt="Cart Page">
+            <p>
+                The colors represents the following features.
+            </p>
+            <ul>
+                <li><b>
+                        Green arrow
+                    </b>
+                    <br>
+                    <p>Points to the cart clear icon</p>
+                    <p>When tapped, the items in cart are removed</p>
+                    <p><b>Note</b>: This action is undoable.</p>
+                </li>
+                <li>
+                    <b>Red skew enclosure</b> <br>
+                    <p>This is a list of items added to cart.</p>
+                    <p>The quantities can be incremented and decremented there be need</p>
+                    <p><b>Note:</b> If the quantity is decremented to 0, the item is automatically removed from cart.
+                        This action is undoable. </p>
+                    <p><b>The product quantities can only be incremented upto the quantities available for the
+                            product.</b></p>
+                    <p>All sales confirmed is notified to the product owner.</p>
+                </li>
+                <li>
+                    <b>Blue arrow</b>
+                    <br>
+                    <p>This points to the sale confirmation button.</p>
+                    <p>When pressed, it is assumed the client has already paid for the product and the all transactions
+                        have been competed.</p>
+                </li>
+
+            </ul>
+        </div>
+
+        <div class="sub-block">
+            <h4>Profile page</h4>
+            <p>The Profile dashboard has the following features</p>
+            <img src="{% static 'imgs/documentation/profile-page.jpg'%}" alt="">
+            <p>
+                The colors represents the following features.
+            </p>
+
+            <ul>
+                <li><b>Red skew Enclosure</b> <br>
+                    <p>
+                        Products management screen.
+                        <b>Note:</b> This option is only available to the priviledged user ie the product owner. It
+                        provides means for the owner to Create new product, Update existing and delete as below.
+                    </p>
+                    <img src="{% static 'imgs/documentation/all-products.jpg'%}" alt="All products">
+                    <img src="{% static 'imgs/documentation/products-create.jpg'%}" alt="Products create new">
+                    <img src="{% static 'imgs/documentation/products-edit.jpg'%}" alt="Products Edit">
+                    <b>Note:</b> The top righ corner has a '+' icon which when clicked, shows a form for creating new
+                    product.
+
+                    <b>Note:</b> When the product card on the all products page is clicked, it displays form to update
+                    and delete the product.
+                </li>
+                <li><b>Blue skew Enclosure</b> <br>
+                    <p>
+                        <b>Notifications</b>
+                        <br>
+                    </p>
+                    <p>
+                        This screen shows a list of Notifications or messages to the product owner. It is also a
+                        priviledged option for the priviledged accessors.
+                    </p>
+                    <p>
+                        Newer Notifications are marked by filled circled of the left, title and short body content on
+                        the middle and delete button on the right.
+                    </p>
+                    <p>
+                        The Notifications can be tapped to open in detail dialog view.
+                    </p>
+                </li>
+                <li><b>Green skew Enclosure</b> <br>
+                    <p>
+                        Opens to this help page in a mobile web view.
+                    </p>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="block">
+
+        <h2>Getting Started</h2>
+
+        <div class="sub-block">
+            <h4>Registration</h4>
+            <p>
+                To get started, the user simply need to create an account using the applications register page. A
+                default user account will be created and and user redirected to the main dashboard.
+            </p>
+            <p>The following fileds will be needed</p>
+            <ul>
+                <li>Email address</li>
+                <li>Phone number</li>
+                <li>Password</li>
+                <li>Password confirmation</li>
+            </ul>
+        </div>
+        <div class="sub-block">
+            <h4>
+                Login
+            </h4>
+            <p>
+                A next time login is simple as only the email and password used on account creation is needed.
+            </p>
+            <p></p>
+        </div>
+        <div class="sub-block">
+            <h4>Password reset/change</h4>
+            <p>
+                Since the application is controled by the product owner, password changes can be updated on request by
+                the shop owner in their super user dashboard. <b>NB</b> The Shop owner will be trained on this.
+            </p>
+        </div>
+        <div>
+            <p>The rest of the actions are straighforward and simple. Simple follow the prompts.</p>
+        </div>
+    </div>
+
+    <div class="block">
+
+        <h2>
+            FAQS
+        </h2>
+
+        <p>
+            This section provide answers to the most commonly asked questions about the application.
+        </p>
+        <p>They will be updated with time.</p>
+    </div>
+
+    <div class="block">
+        <h2>
+            Troubleshooting
+        </h2>
+        <div class="sub-block">
+            <h4>Human error/accidents</h4>
+            <p>
+                Incase of accidents on transactions, simple inform the shop owner to do the corrections immediately.
+            </p>
+        </div>
+        <div class="sub-block">
+            <h4>Application error</h4>
+            <ul>
+                <li>Note the actions that lead to the error: ie answer the question 'what lead to the error' for easy
+                    debug.</li>
+                <li>Take a screenshot of the error.</li>
+                <li>Report to the shop owner who is to inform the developer immediately.</li>
+            </ul>
+        </div>
+        <div class="sub-block">
+            <h4><b>Note</b></h4>
+            <p>Always make sure you're connected to the internet while operating the app.</p>
+        </div>
+
+    </div>
+
+    <div class="block">
+        <h2>
+            Contact
+        </h2>
+        <div class="sub-block">
+            <h4>Email</h4>
+            <p>Email the developer: kevinalex846@gmail.com</p>
+            <p>Subject: start with: Dexter app - {Subject content }</p>
+        </div>
+        <div>
+            <h4>Phone</h4>
+            <p>Message or call the developer: 0791381653</p>
+            <p>For whatsApp or messenger, use the following format:</p>
+            <p>Subject: start with: Dexter app - {Subject content }</p>
+        </div>
+    </div>
+</div>
+
+{% endblock content%}

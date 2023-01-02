@@ -30,6 +30,9 @@ urlpatterns = [
     path("cart/",include("cart.urls")),
     path("notifications/",include("notifications.urls")),
 
+    # Help static page
+    path("",include("help.urls")),
+
         # Documentation
     path('api/v1/', include_docs_urls(title="Dexter API")),
 ]
