@@ -162,3 +162,9 @@ AUTH_USER_MODEL = 'user.User'
 # whitenoise configuration
 WHITENOISE_USE_FINDERS = True
 STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
+
+# CSRF debugs
+CSRF_TRUSTED_ORIGIN = ["https://web-production-f123.up.railway.app"]
+CSRF_COOKIE_SECURE = True
+SESSION_COOKIE_SECURE = True
+SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https")
