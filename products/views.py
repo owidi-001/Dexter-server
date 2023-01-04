@@ -8,9 +8,9 @@ from rest_framework.response import Response
 from rest_framework.views import APIView
 
 from .forms import ProductForm
-from .models import Product
+from .models import Product, ProductImage
 from .schema import ProductSchema
-from .serializers import ProductSerializer
+from .serializers import ProductImageSerializer, ProductSerializer
 
 """
 HTTP_200_OK
@@ -46,7 +46,7 @@ class ProductView(APIView):
     """ Creates a new product """
 
     def post(self,request):
-        print(request.data)
+        # print(request.data)
 
         form=ProductForm(request.data)
 
@@ -54,7 +54,11 @@ class ProductView(APIView):
             product=form.save(commit=False)
             product.created_by=request.user
             product.save()
-            
+
+            # Get the image data sent and save product image
+            image=request.data.get("image")
+            ProductImage.objects.create(product=product,image=image)
+
             serializer=ProductSerializer(product).data
             return Response(serializer,status=status.HTTP_201_CREATED)
             
@@ -92,12 +96,16 @@ class ProductView(APIView):
 
             if form.cleaned_data.get("type"):
                 product.type = form.cleaned_data.get("type")
+            
+            
+            product.save()
 
+            # Update product image if any
             if form.cleaned_data.get("image"):
                 if form.cleaned_data.get("image") != "empty":
-                    product.image = form.cleaned_data.get("image")
+                    product_image=ProductImage.objects.get_or_create(product=product,image=request.data.get("image"))[0]
+                    product_image.save()
 
-            product.save()
 
             # Create a notification message
             title="Product Update"
@@ -125,6 +133,7 @@ class ProductView(APIView):
             return Response(serializer,status=status.HTTP_202_ACCEPTED)
         return Response(form.errors, status=status.HTTP_400_BAD_REQUEST)
 
+    
     """ deletes a product from db """
 
     def delete(self, request):
@@ -138,3 +147,16 @@ class ProductView(APIView):
             return Response(serializer,status=status.HTTP_204_NO_CONTENT)
         else:
             return Response(status=status.HTTP_400_BAD_REQUEST)
+
+class ProductImageView(APIView):
+    schema = ProductSchema()
+    # permissions
+    authentication_classes = [TokenAuthentication]
+    permission_classes = [IsAuthenticated]
+
+    """ Returns all available product images """
+
+    def get(self,request):
+        images = ProductImage.objects.all()
+        serializer = ProductImageSerializer(images, many=True)
+        return Response(serializer.data)

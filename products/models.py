@@ -6,7 +6,6 @@ class Product(models.Model):
     price=models.FloatField()
     quantity=models.IntegerField()
     minQuantity=models.IntegerField()
-    image=models.TextField()
     type=models.CharField(max_length=200)
     created_by=models.ForeignKey(User,on_delete=models.CASCADE)
     created_on=models.DateTimeField(auto_now_add=True,blank=True,null=True)
@@ -19,3 +18,8 @@ class Product(models.Model):
         verbose_name = 'product'
         verbose_name_plural = 'products'
         ordering = ('name',)
+
+class ProductImage(models.Model):
+    image=models.TextField()
+    product=models.ForeignKey(Product,on_delete=models.CASCADE)
+
