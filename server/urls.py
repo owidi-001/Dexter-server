@@ -37,7 +37,5 @@ urlpatterns = [
     path('api/v1/', include_docs_urls(title="Dexter API")),
 ]
 
-
-if settings.DEBUG:
-    urlpatterns += static(settings.MEDIA_URL,
+urlpatterns += static(settings.MEDIA_URL,
                           document_root=settings.MEDIA_ROOT)

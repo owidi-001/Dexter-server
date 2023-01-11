@@ -1,3 +1,5 @@
+import base64
+
 from django.shortcuts import get_object_or_404
 from notifications.models import Notification
 # from django.utils.decorators import method_decorator
@@ -7,10 +9,10 @@ from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 from rest_framework.views import APIView
 
-from .forms import ProductForm
-from .models import Product, ProductImage
+from .forms import ProductForm, ProductUpdateForm
+from .models import Product
 from .schema import ProductSchema
-from .serializers import ProductImageSerializer, ProductSerializer
+from .serializers import  ProductSerializer
 
 """
 HTTP_200_OK
@@ -48,20 +50,19 @@ class ProductView(APIView):
     def post(self,request):
         # print(request.data)
 
-        form=ProductForm(request.data)
+        form=ProductForm(request.POST,request.FILES)
+        print(form.data)
+        print(request.FILES)
 
         if form.is_valid():
             product=form.save(commit=False)
             product.created_by=request.user
             product.save()
 
-            # Get the image data sent and save product image
-            image=request.data.get("image")
-            ProductImage.objects.create(product=product,image=image)
-
             serializer=ProductSerializer(product).data
             return Response(serializer,status=status.HTTP_201_CREATED)
-            
+        
+        print(form.errors)    
         return Response(form.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
@@ -69,7 +70,7 @@ class ProductView(APIView):
 
     def patch(self, request):
 
-        form = ProductForm(request.data)
+        form = ProductUpdateForm(request.POST, request.FILES)
         print(form.errors)
 
 
@@ -100,11 +101,10 @@ class ProductView(APIView):
             
             product.save()
 
-            # Update product image if any
-            if form.cleaned_data.get("image"):
-                if form.cleaned_data.get("image") != "empty":
-                    product_image=ProductImage.objects.get_or_create(product=product,image=request.data.get("image"))[0]
-                    product_image.save()
+            # # Update product image if any
+            # if form.cleaned_data.get("image"):
+            #     product_image=ProductImage.objects.get_or_create(product=product,image=request.data.get("image"))[0]
+            #     product_image.save()
 
 
             # Create a notification message
