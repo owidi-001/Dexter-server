@@ -69,8 +69,8 @@ class ProductView(APIView):
     def patch(self, request):
 
         form = ProductForm(request.POST, request.FILES)
-        print(form.data)
-        print(request.FILES)
+        # print(form.data)
+        # print(request.FILES)
 
         if form.is_valid():
             product = get_object_or_404(Product, id=request.data.get("product"))
