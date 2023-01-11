@@ -9,7 +9,7 @@ from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 from rest_framework.views import APIView
 
-from .forms import ProductForm, ProductUpdateForm
+from .forms import ProductForm
 from .models import Product
 from .schema import ProductSchema
 from .serializers import  ProductSerializer
@@ -51,9 +51,7 @@ class ProductView(APIView):
         # print(request.data)
 
         form=ProductForm(request.POST,request.FILES)
-        print(form.data)
-        print(request.FILES)
-
+        
         if form.is_valid():
             product=form.save(commit=False)
             product.created_by=request.user
@@ -70,9 +68,9 @@ class ProductView(APIView):
 
     def patch(self, request):
 
-        form = ProductUpdateForm(request.POST, request.FILES)
-        print(form.errors)
-
+        form = ProductForm(request.POST, request.FILES)
+        print(form.data)
+        print(request.FILES)
 
         if form.is_valid():
             product = get_object_or_404(Product, id=request.data.get("product"))
@@ -87,7 +85,7 @@ class ProductView(APIView):
                 product.name = form.cleaned_data.get("name")
 
             if form.cleaned_data.get("price"):
-                product.unit_price = form.cleaned_data.get("price")
+                product.price = form.cleaned_data.get("price")
 
             if form.cleaned_data.get("quantity"):
                 product.quantity = form.cleaned_data.get("quantity")
@@ -97,8 +95,10 @@ class ProductView(APIView):
 
             if form.cleaned_data.get("type"):
                 product.type = form.cleaned_data.get("type")
-            
-            
+
+            if request.FILES.get('image'):
+                product.image= request.FILES.get('image')
+
             product.save()
 
             # # Update product image if any
@@ -131,6 +131,8 @@ class ProductView(APIView):
             serializer = ProductSerializer(product).data
 
             return Response(serializer,status=status.HTTP_202_ACCEPTED)
+        
+        print(form.errors)  
         return Response(form.errors, status=status.HTTP_400_BAD_REQUEST)
 
     
